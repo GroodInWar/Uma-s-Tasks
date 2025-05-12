@@ -1,0 +1,18 @@
+mixin itemTemplate(item)
+    .item-template
+        .item-header
+            h2.item-title= item.title
+
+            .item-actions
+                form(action=`/todo/complete/${item.item_id}`, method="POST", style="display:inline")
+                    button.item-action(type="submit", aria-label="Mark as complete") ✅
+                form(action=`/todo/edit/${item.item_id}`, method="GET", style="display:inline")
+                    button.item-action(type="submit", aria-label="Edit item") 📝
+                form(action=`/todo/delete/${item.item_id}`, method="POST", style="display:inline")
+                    button.item-action(type="submit", aria-label="Delete item") 🗑️
+
+        .item-content
+            p.item-description= item.description
+            .item-meta
+                span.item-day 📅 #{item.day ? item.day.split('T')[0] : 'No date'}
+                span.item-category= item.category

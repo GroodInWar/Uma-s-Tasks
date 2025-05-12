@@ -1,0 +1,20 @@
+CREATE TABLE users
+(
+    user_id      INT          NOT NULL AUTO_INCREMENT,
+    username     VARCHAR(255) NOT NULL,
+    passwordHash VARBINARY(16),
+    PRIMARY KEY (user_id),
+    UNIQUE (user_id)
+);
+
+CREATE TABLE items
+(
+    item_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT,
+    title VARCHAR(60) NOT NULL,
+    day DATE,
+    description VARCHAR(300),
+    category VARCHAR(30),
+    PRIMARY KEY (item_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);

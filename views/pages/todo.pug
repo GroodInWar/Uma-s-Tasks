@@ -1,0 +1,25 @@
+// - views/pages/todo
+include ../mixins/_itemTempate
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        link(rel="stylesheet" href="/css/styles.css")
+        title Your ToDo List
+
+    body
+        include ../partials/navbar
+        main
+            h1 Welcome #{user}
+
+            if !items || items.length === 0
+                p You have no to-do items yet.
+                a(href="/todo/add" class="submit-button") &#2795; Add Your First Task
+            else
+                div.item-container
+                    each item in items
+                        +itemTemplate(item)
+
+        include ../partials/footer

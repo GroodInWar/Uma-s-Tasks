@@ -1,0 +1,31 @@
+//- views/pages/add.pug
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Add ToDo Item
+        link(rel="stylesheet" href="/css/styles.css")
+        script(src="/js/add.js" defer)
+    body
+        include ../partials/navbar
+
+        main
+            h1 Add a New To-Do
+            form(method="post" action="/todo/add")
+                fieldset
+                    label(for="title") Title
+                        input#title(type="text" name="title" required)
+
+                    label(for="day") Due Date
+                        input#day(type="date" name="day" required)
+
+                    label(for="category") Category
+                        input#category(type="text" name="category")
+
+                    label(for="description") Description
+                        textarea#description(name="description")
+
+                    input(type="submit" value="Add Item")
+
+        include ../partials/footer
