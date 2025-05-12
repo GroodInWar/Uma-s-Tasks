@@ -3,16 +3,17 @@ const db = require('../db');
 // Get todo.pug
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await db.query(
+
+        const [items] = await db.query(
             'SELECT * FROM items WHERE user_id = (SELECT user_id FROM users WHERE username = ?)',
             [req.user.username]
         );
 
-        console.log('[Items]', rows)
+        console.log('[Items]', items);
 
         res.render('pages/todo', {
             user: req.user.username,
-            items: Array.isArray(rows) ? rows : [rows]
+            items: items
         });
     } catch (err) {
         console.error('[-] Failed to load todo items:', err);
