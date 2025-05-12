@@ -76,8 +76,8 @@ router.post('/delete/:id', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
     const id = req.params.id;
     const rows = await db.query('SELECT * FROM items WHERE item_id = ?', [id]);
-    if (rows.length === 0) return res.redirect('/todo');
-    res.render('pages/edit', {item: rows[0]});
+    if (!rows) return res.redirect('/todo');
+    res.render('pages/edit', {rows});
 });
 
 // Save edits (optional POST route)

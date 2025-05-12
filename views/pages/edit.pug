@@ -9,21 +9,28 @@ html(lang="en")
 
     body
         include ../partials/navbar
-block content
-    h1 Edit Item
-    form(method="POST" action=`/todo/edit/${item.item_id}`)
-        label(for="title") Title
-        input(type="text", name="title", value=item.title, required)
+        main
+            h1 Edit Item
+            form(method="POST" action=`/todo/edit/${item_id}`)
+                label(for="title") Title
+                input(type="text"
+                    name="title"
+                    value=title
+                    required)
 
-        label(for="description") Description
-        textarea(name="description")= item.description
+                label(for="description") Description
+                textarea(name="description") #{description}
 
-        label(for="day") Day
-        input(type="date", name="day", value=item.day.split('T')[0], required)
+                label(for="day") Day
+                input(type="date"
+                    name="day"
+                    value=`${day ? day.split('T')[0] : ''}`
+                required)
 
-        label(for="category") Category
-        input(type="text", name="category", value=item.category)
+                label(for="category") Category
+                input(type="text"
+                    name="category"
+                    value=`${category}`)
 
-        input(type="submit", value="Save Changes")
-
+                input(type="submit", value="Save Changes")
         include ../partials/footer
