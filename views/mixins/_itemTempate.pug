@@ -14,5 +14,5 @@ mixin itemTemplate(item)
         .item-content
             p.item-description= item.description
             .item-meta
-                span.item-day 📅 #{item.day}
+                span.item-day 📅 #{new Date(item.day).toISOString().split('T')[0]}
                 span.item-category= item.category

@@ -20,7 +20,7 @@ html(lang="en")
             else
                 a(href="/todo/add" class="submit-button") &#x2795; Add New Tasks
                 div.item-container
-                    each item in [items]
+                    each item in items
                         +itemTemplate(item)
 
         include ../partials/footer

@@ -4,16 +4,14 @@ const db = require('../db');
 router.get('/', async (req, res) => {
     try {
 
-        const [items] = await db.query(
+        const items = await db.query(
             'SELECT * FROM items WHERE user_id = (SELECT user_id FROM users WHERE username = ?)',
             [req.user.username]
         );
 
-        console.log('[Items]', items);
-
         res.render('pages/todo', {
             user: req.user.username,
-            items: items
+            items
         });
     } catch (err) {
         console.error('[-] Failed to load todo items:', err);
@@ -77,7 +75,7 @@ router.post('/delete/:id', async (req, res) => {
 // Edit page
 router.get('/edit/:id', async (req, res) => {
     const id = req.params.id;
-    const [rows] = await db.query('SELECT * FROM items WHERE item_id = ?', [id]);
+    const rows = await db.query('SELECT * FROM items WHERE item_id = ?', [id]);
     if (rows.length === 0) return res.redirect('/todo');
     res.render('pages/edit', {item: rows[0]});
 });
