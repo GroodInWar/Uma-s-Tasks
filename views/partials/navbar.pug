@@ -4,8 +4,8 @@ nav
     a(href="/todo" class="active") ToDo List
     a(href="/contact") Contact
     a(href="/about") About
-    a(href="/login") Login
-    a#auth-link(href="/register") Register
+    a#auth-link(href="/login") Login
+    a(href="/register") Register
 
 script.
     document.addEventListener('DOMContentLoaded', async () => {
@@ -23,6 +23,10 @@ script.
                 if (authLink) {
                     authLink.textContent = 'Logout';
                     authLink.href = '#';
+                    const newLink = document.createElement('a');
+                    newLink.href = '/todo';
+                    newLink.textContent = 'Tasks';
+                    authLink.parentNode.insertBefore(newLink, authLink);
                     authLink.addEventListener('click', async (e) => {
                         e.preventDefault();
                         await fetch('/api/logout', {method: 'POST'});

@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (user.status === 'Logged In') {
             authLink.textContent = 'Logout';
             authLink.href = '#';
+            const newLink = document.createElement('a');
+            newLink.href = '/todo';
+            newLink.textContent = 'Tasks';
+            authLink.parentNode.insertBefore(newLink, authLink);
             authLink.addEventListener('click', async (e) => {
                 e.preventDefault();
                 await fetch('/api/logout', { method: 'POST' });
